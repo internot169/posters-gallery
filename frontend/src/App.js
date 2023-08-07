@@ -10,6 +10,7 @@ function App() {
 }
 
 function Header({title}) {
+  // TODO: Add buttons
   return (
     <div className="title">
       <h1>{title}</h1>
@@ -23,8 +24,8 @@ function PosterUploadForm() {
   }
   return (
     <form method="post" onsubmit={submit} className="posterForm">
-      <input type="text" name="title"></input>
-      <input type="text" name="description"></input>
+      <input type="text" name="title" className="titleBox"></input>
+      <input type="text" name="description" className="descriptionBox"></input>
       <button type="reset">Reset form</button>
       <button type="submit">Submit form</button>
     </form>

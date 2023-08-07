@@ -41,3 +41,5 @@
 /backend/npm-debug.log*
 /backend/yarn-debug.log*
 /backend/yarn-error.log*
+
+/backend/.env
