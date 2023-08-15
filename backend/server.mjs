@@ -1,17 +1,27 @@
 import express from "express";
-import cors from "cors";
-import "./loadEnvironment.mjs";
-import records from "./routes/record.mjs";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import routes from "./routes/routes.js";
 
-const PORT = process.env.PORT || 5050;
+dotenv.config();
+const mongoString = process.env.DATABASE_URL;
+
+mongoose.connect(mongoString);
+const database = mongoose.connection
+
+database.on('error', (error) => {
+  console.log(error)
+})
+
+database.once('connected', () => {
+  console.log('Database Connected');
+})
+
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+app.use('/api', routes);
 
-app.use("/record", records);
-
-// start the Express server
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
+app.listen(3000, () => {
+  console.log(`Server is running on port: ${3000}`);
 });
